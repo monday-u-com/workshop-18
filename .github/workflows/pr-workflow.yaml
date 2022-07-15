@@ -1,5 +1,5 @@
 # Trigger on pull request to master (+ allow manual runs of this workflow)
-# Checkout repo, install Node.js, run test
+# Checkout repo, install Node.js, run test .
 
 name: pr-workflow
 
