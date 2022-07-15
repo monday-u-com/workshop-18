@@ -17,5 +17,4 @@ jobs:
       - name: Install Node.js
         uses: actions/install_node
       - name: Run test
-        uses: actions/run_tests
-
+        run: npm test
