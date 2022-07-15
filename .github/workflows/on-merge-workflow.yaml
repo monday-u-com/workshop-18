@@ -5,7 +5,9 @@
 name: on-merge-workflow
 
 on:
-  pull_request: {master}
+  pull_request:
+    branches:
+      -[master]
   workflow_dispatch:
 jobs:
   test:
@@ -14,8 +16,18 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Install Node.js
-        uses:
+        uses: actions/setup-node@v3
+      - name: Run test
+        run: npm test
   build-deploy:
-    runs-on: # [to be filled]
+    runs-on: ubuntu-latest
     steps:
-    # [rest to be filled]
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    - name: deploy to heroku
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{secrets.HEROKU_AUTH}}
+        heroku_app_name: "workshop-pipeline" #Must be unique in Heroku
+        heroku_email: "matansh@monday.com"
+
