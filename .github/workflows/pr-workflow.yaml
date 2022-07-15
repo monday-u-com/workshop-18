@@ -1,11 +1,12 @@
 # Trigger on pull request to master (+ allow manual runs of this workflow)
-# Checkout repo, install Node.js, run test
+# Checkout repo, install Node.js, run test ..
 
 name: pr-workflow
 
 on:
   pull_request:
     branches: [master]
+  workflow_dispatch:
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -14,7 +15,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Install Node.js
         uses: actions/npm-install@v2
-        run: npm i
-      - name: Run tests
-        uses: actions/npm-install@v2
-        run: npm test
+        with:
+          node-version: '14'
+      - name: Install and run tests
+        run: |
+          npm install
+          npm test
