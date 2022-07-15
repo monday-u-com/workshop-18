@@ -5,15 +5,16 @@
 name: on-merge-workflow
 
 on:
-# [to be filled]
+  pull_request: {master}
+  workflow_dispatch:
 jobs:
   test:
-    runs-on: # [to be filled]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Install Node.js
-        # [rest to be filled]
+        uses:
   build-deploy:
     runs-on: # [to be filled]
     steps:
